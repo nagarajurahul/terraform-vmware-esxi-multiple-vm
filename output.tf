@@ -23,3 +23,17 @@ output "ansible_inventory" {
   description = "Ansible inventory formatted for SSH access"
 }
 
+output "ansible_inventory_json" {
+  value = {
+    all = {
+      hosts = [
+        for mod in module.vm :
+        {
+          name: mod.vm_hostname,
+          ansible_host: mod.vm_ip,
+          ansible_user: "ubuntu"
+        }
+      ]
+    }
+  }
+}
