@@ -12,3 +12,14 @@ output "vm_hostnames" {
   description = "Hostnames of all deployed VMs"
 }
 
+output "ansible_inventory" {
+  value = join("\n", concat(
+    ["[vms]"],
+    [
+      for name, mod in module.vm :
+      "${mod.vm_hostname} ansible_host=${mod.vm_ip} ansible_user=ubuntu"
+    ]
+  ))
+  description = "Ansible inventory formatted for SSH access"
+}
+
