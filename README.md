@@ -135,6 +135,28 @@ terraform destroy -auto-approve
 ```
 ---
 
+## 🔮 Roadmap
+
+- 🔁 Add support for VM tagging, resource pools
+
+- 📦 Add ISO-based VM creation
+
+- 🔐 Vault/SOPS integration for secure var injection
+
+- 📘 CI workflows for validation and formatting
+
+- 🛠 Post-deploy hooks via Ansible or remote-exec
+
+- 🛰 Static IP/DNS support
+
+- 🧵 Health checks and cloud-init validation
+
+- 🎨 Add diagrams (Mermaid/draw.io) to explain architecture
+
+- 🔄 GitOps integration via ArgoCD or Flux
+
+---
+
 ## ✨ Author
 Rahul Nagaraju Cloud & DevOps Engineer
 
