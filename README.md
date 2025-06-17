@@ -15,6 +15,44 @@ This project enables fully automated provisioning of **multiple virtual machines
 
 ---
 
+## 🧱 Prerequisites
+
+- **Terraform ≥ 0.12**
+- **ESXi (Free or Paid)**
+- **OVA file** (example: Ubuntu 24.04 cloud image)
+- **ovftool** installed (optional, for inspecting .ova)
+
+---
+
+## 🔧 Provider Setup
+This project uses the josenk/esxi Terraform provider, which supports deploying directly to free ESXi without vCenter.
+
+## 📥 Input Variables
+The vms variable defines all VM configurations in one structured map
+
+Example terraform.tfvars
+
+```bash
+vms = {
+  "vm1" = {
+    esxi_hostname   = "<your-esxi-hostname>"
+    esxi_username   = "<your-esxi-username>"
+    esxi_password   = "<your-esxi-password>"
+    
+    virtual_network = "VM Network"
+    disk_store      = "datastore1"
+    vm_hostname     = "rahul-linux-1"
+    vm_password     = "<your-vm-password>"
+    ovf_file        = "noble-server-cloudimg-amd64.ova"
+    ssh_public_key  = "ssh-ed25519 AAAAC3...your-key...user@host"
+  },
+  "vm2" = {
+    ...
+  }
+}
+```
+
+---
 
 - 🔁 Refactor into reusable Terraform modules for multi-VM deployments
 - 📦 Add support for additional disks, ISO-based installs, and resource pools
