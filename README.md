@@ -123,6 +123,10 @@ To destroy all VMs and resources:
 ```bash
 terraform destroy -auto-approve
 ```
+---
+
+## ✨ Author
+Rahul Nagaraju Cloud & DevOps Engineer
 
 ---
 
