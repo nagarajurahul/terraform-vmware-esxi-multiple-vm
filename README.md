@@ -27,6 +27,8 @@ This project enables fully automated provisioning of **multiple virtual machines
 ## 🔧 Provider Setup
 This project uses the josenk/esxi Terraform provider, which supports deploying directly to free ESXi without vCenter.
 
+---
+
 ## 📥 Input Variables
 The vms variable defines all VM configurations in one structured map
 
@@ -51,6 +53,35 @@ vms = {
   }
 }
 ```
+
+---
+
+## 🚀 Usage
+
+Initialize and apply the configuration:
+
+```bash
+terraform init
+
+terraform plan
+or
+terraform plan --var-file="custom.tfvars"
+
+terraform apply
+or
+terraform apply --var-file="custom.tfvars"
+```
+
+---
+
+## 📤 Outputs
+
+| Output Name              | Description                             |
+| ------------------------ | --------------------------------------- |
+| `vm_ips`                 | Map of VM names to IP addresses         |
+| `vm_hostnames`           | Map of VM names to hostnames            |
+| `ansible_inventory`      | INI-style inventory block for Ansible   |
+| `ansible_inventory_json` | JSON-formatted Ansible inventory object |
 
 ---
 
