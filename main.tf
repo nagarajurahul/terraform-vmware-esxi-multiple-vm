@@ -1,3 +1,13 @@
+terraform {
+  required_version = ">= 0.12"
+}
+
+provider "esxi" {
+  esxi_hostname = var.esxi_hostname
+  esxi_username = var.esxi_username
+  esxi_password = var.esxi_password
+}
+
 module "vm"{
   source = "git::https://github.com/nagarajurahul/terraform-vmware-esxi-vm-module.git?ref=v1.3.0"
 
