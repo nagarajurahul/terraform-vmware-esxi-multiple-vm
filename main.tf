@@ -2,10 +2,14 @@ terraform {
   required_version = ">= 0.12"
 }
 
+locals {
+  first = keys(var.vms)[0]
+}
+
 provider "esxi" {
-  esxi_hostname = var.esxi_hostname
-  esxi_username = var.esxi_username
-  esxi_password = var.esxi_password
+  esxi_hostname = var.vms[local.first].esxi_hostname
+  esxi_username = var.vms[local.first].esxi_username
+  esxi_password = var.vms[local.first].esxi_password
 }
 
 module "vm"{
