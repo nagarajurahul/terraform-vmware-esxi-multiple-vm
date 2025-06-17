@@ -95,6 +95,37 @@ ansible -i inventory.ini all -m ping
 
 ---
 
+## 🔒 Security Notes
+
+- Ensure your OVF/OVA images are trusted and signed.
+
+- Avoid hardcoding secrets in *.tf files — use environment variables or a secret manager.
+
+- Always use .gitignore to exclude .terraform/, terraform.tfstate, and sensitive var files.
+
+---
+
+## 📦 Module Reference
+This project uses a reusable module stored in a remote Git repo:
+
+```bash
+module "vm" {
+  source = "git::<https://github.com/nagarajurahul/terraform-vmware-esxi-vm-module.git?ref=v2.0.3>"
+  ...
+}
+```
+
+---
+
+## 🧹 Cleanup
+To destroy all VMs and resources:
+
+```bash
+terraform destroy -auto-approve
+```
+
+---
+
 - 🔁 Refactor into reusable Terraform modules for multi-VM deployments
 - 📦 Add support for additional disks, ISO-based installs, and resource pools
 - 🔐 Secure secrets with tools like HashiCorp Vault or Mozilla SOPS
