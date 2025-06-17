@@ -89,6 +89,45 @@ module "vm" {
 
 ---
 
+## 🚀 Getting Started
+
+### 1️⃣ Download a Cloud-Ready OVA
+
+Get Ubuntu cloud images:
+
+```bash
+wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.ova
+```
+
+### 2️⃣ Define the provider (in parent project)
+
+```bash
+provider "esxi" {
+  esxi_hostname   = "<your-esxi-hostname>"
+  esxi_hostport   = "22"
+  esxi_hostssl    = "443"
+  esxi_username   = "<your-esxi-username>"
+  esxi_password   = "<your-esxi-password>"
+}
+```
+
+### 2️⃣ Run Terraform for your parent project
+
+```bash
+terraform init
+
+terraform plan
+or
+terraform plan --var-file="custom.tfvars"
+
+terraform apply
+or
+terraform apply --var-file="custom.tfvars"
+```
+
+---
+
+
 ## 📤 Outputs
 
 | Output Name              | Description                             |
