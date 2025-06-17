@@ -85,6 +85,16 @@ terraform apply --var-file="custom.tfvars"
 
 ---
 
+## 📡 Ansible Integration
+You can directly use the generated inventory output in an Ansible playbook like so:
+
+```bash
+terraform output -raw ansible_inventory > inventory.ini
+ansible -i inventory.ini all -m ping
+```
+
+---
+
 - 🔁 Refactor into reusable Terraform modules for multi-VM deployments
 - 📦 Add support for additional disks, ISO-based installs, and resource pools
 - 🔐 Secure secrets with tools like HashiCorp Vault or Mozilla SOPS
