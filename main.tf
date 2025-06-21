@@ -9,7 +9,7 @@ provider "esxi" {
 }
 
 module "vm"{
-  source = "git::https://github.com/nagarajurahul/terraform-vmware-esxi-vm-module.git?ref=v2.1.0"
+  source = "git::https://github.com/nagarajurahul/terraform-vmware-esxi-vm-module.git?ref=v3.0.0"
 
   for_each = var.vms
 
@@ -23,4 +23,7 @@ module "vm"{
   vm_password      = each.value.vm_password
   ovf_file         = each.value.ovf_file
   ssh_public_key   = each.value.ssh_public_key
+
+  default_user     = each.value.default_user
+  users            = each.value.users
 }

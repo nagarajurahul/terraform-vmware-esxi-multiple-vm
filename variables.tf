@@ -9,5 +9,10 @@ variable "vms" {
     vm_password     = string
     ovf_file        = string
     ssh_public_key  = string
+    default_user    = string
+    users           = map(object({
+      password = string
+      ssh_keys = list(string)
+    }))
   }))
 }
