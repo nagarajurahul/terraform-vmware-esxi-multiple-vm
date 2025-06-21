@@ -9,7 +9,7 @@ provider "esxi" {
 }
 
 module "vm"{
-  source = "git::https://github.com/nagarajurahul/terraform-vmware-esxi-vm-module.git?ref=v3.0.3"
+  source = "git::https://github.com/nagarajurahul/terraform-vmware-esxi-vm-module.git?ref=v3.0.4"
 
   for_each = var.vms
 
