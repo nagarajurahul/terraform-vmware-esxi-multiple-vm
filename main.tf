@@ -22,7 +22,6 @@ module "vm"{
   vm_hostname      = each.value.vm_hostname
   vm_password      = each.value.vm_password
   ovf_file         = each.value.ovf_file
-  ssh_public_key   = each.value.ssh_public_key
 
   default_user     = each.value.default_user
   users            = each.value.users
