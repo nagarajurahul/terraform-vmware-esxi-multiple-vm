@@ -99,7 +99,7 @@ Get Ubuntu cloud images:
 wget https://cloud-images.ubuntu.com/noble/current/noble-server-cloudimg-amd64.ova
 ```
 
-### 2️⃣ Define the provider (in parent project)
+### 2️⃣ Define the provider in provider.tf (in parent project)
 
 ```bash
 provider "esxi" {
@@ -132,7 +132,7 @@ terraform apply --var-file="custom.tfvars"
 
 | Output Name              | Description                             |
 | ------------------------ | --------------------------------------- |
-| `vm_ips`                 | Map of VM names to IP addresses         |
+| `vm_ips`                 | Map of VM IPs to IP addresses         |
 | `vm_hostnames`           | Map of VM names to hostnames            |
 | `ansible_inventory`      | INI-style inventory block for Ansible   |
 | `ansible_inventory_json` | JSON-formatted Ansible inventory object |
@@ -167,7 +167,9 @@ terraform output -json ansible_inventory_json
 ---
 
 ## 🧹 Cleanup
-To destroy all VMs and resources:
+To destroy all VMs and resources: 
+
+`Note` : This will destroy without approval
 
 ```bash
 terraform destroy -auto-approve
