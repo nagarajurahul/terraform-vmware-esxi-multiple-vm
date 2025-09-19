@@ -42,26 +42,42 @@ provider "esxi"{
 ## 📥 Input Variables
 The vms variable defines all VM configurations in one structured map
 
-Sample input in terraform.tfvars
+Sample input in terraform.tfvars.json
 
 ```bash
-vms = {
-  "vm1" = {
-    esxi_hostname   = "<your-esxi-hostname>"
-    esxi_username   = "<your-esxi-username>"
-    esxi_password   = "<your-esxi-password>"
-    
-    virtual_network = "VM Network"
-    disk_store      = "datastore1"
-    vm_hostname     = "rahul-linux-1"
-    vm_password     = "<your-vm-password>"
-    ovf_file        = "noble-server-cloudimg-amd64.ova"
-    ssh_public_key  = "ssh-ed25519 AAAAC3...your-key...user@host"
-  },
-  "vm2" = {
-    ...
+{
+  "vms": {
+    "vm1": {
+      "esxi_hostname": "<your-esxi-hostname>",
+      "esxi_username": "<your-esxi-username>",
+      "esxi_password": "<your-esxi-password>",
+      "disk_store": "datastore1",
+      "virtual_network": "VM Network",
+      "vm_hostname": "rahul-linux-1",
+      "vm_password": "<your-vm-password>",
+      "ovf_file": "noble-server-cloudimg-amd64.ova",
+      "default_user": "ubuntu",
+      "users": {
+        "ubuntu": {
+          "password": "<your-vm-password>",
+          "ssh_keys": [
+            "ssh-ed25519 AAAAC3...your-key...user@host",
+            "ssh-ed25519 AAAAC3...your-key...user@host"
+          ]
+        },
+        "user2": {
+          "password": "<your-vm-password>",
+          "ssh_keys": [
+            "ssh-ed25519 AAAAC3...your-key...user@host",
+            "ssh-ed25519 AAAAC3...your-key...user@host"
+          ]
+        }
+      }
+    },
+    "vm2": {}
   }
 }
+
 ```
 
 ---
@@ -78,12 +94,16 @@ module "vm" {
   esxi_hostname    = each.value.esxi_hostname
   esxi_username    = each.value.esxi_username
   esxi_password    = each.value.esxi_password
+
   disk_store       = each.value.disk_store
   virtual_network  = each.value.virtual_network
+
   vm_hostname      = each.value.vm_hostname
   vm_password      = each.value.vm_password
   ovf_file         = each.value.ovf_file
-  ssh_public_key   = each.value.ssh_public_key
+
+  default_user     = each.value.default_user
+  users            = each.value.users
 }
 ```
 
@@ -111,7 +131,7 @@ provider "esxi" {
 }
 ```
 
-### 2️⃣ Run Terraform for your parent project
+### 3️⃣ Run Terraform for your parent project
 
 ```bash
 terraform init
